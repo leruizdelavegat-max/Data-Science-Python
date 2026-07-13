@@ -1,0 +1,259 @@
+% =====================================================================
+% Proyecto Startup - Grupo Bootcamp Claude Code (3 founders, multidisciplinario)
+% Version compacta del proyecto final (~3 paginas)
+% Compilar:  latexmk -pdf Final_Project_Startup_Mini.tex
+% =====================================================================
+\documentclass[10.5pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage{lmodern}
+\usepackage{amssymb}
+\usepackage[margin=1.8cm,headheight=22pt,headsep=8pt]{geometry}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage[most]{tcolorbox}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+
+% ---------------------------------------------------------------------
+% Paleta (misma que el documento principal)
+% ---------------------------------------------------------------------
+\definecolor{clawDark}{RGB}{33,37,43}
+\definecolor{clawOrange}{RGB}{230,81,0}
+\definecolor{clawRed}{RGB}{198,40,40}
+\definecolor{clawTeal}{RGB}{0,121,107}
+\definecolor{clawBlue}{RGB}{21,101,192}
+\definecolor{clawGray}{RGB}{117,117,117}
+\definecolor{clawLight}{RGB}{245,246,248}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=clawOrange,
+  urlcolor=clawBlue,
+  citecolor=clawTeal,
+  pdftitle={Bootcamp Claude Code - Reto Startup en 5 dias},
+  pdfauthor={Alexander Quispe}
+}
+
+% Titulos compactos
+\titleformat{\section}{\large\bfseries\color{clawDark}}{\thesection}{0.5em}{}
+  [\vspace{1pt}{\color{clawOrange}\rule{\linewidth}{1pt}}]
+\titleformat{\subsection}{\normalsize\bfseries\color{clawOrange}}{\thesubsection}{0.5em}{}
+\titlespacing*{\section}{0pt}{8pt}{4pt}
+\titlespacing*{\subsection}{0pt}{6pt}{2pt}
+
+% Header / footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{clawGray}Bootcamp Claude Code -- Reto Startup}
+\fancyhead[R]{\small\color{clawGray}Alexander Quispe}
+\fancyfoot[C]{\small\color{clawGray}\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{clawOrange}\leaders\hrule height \headrulewidth\hfill}}
+
+\tcbset{
+  ycbox/.style={
+    enhanced, colback=clawLight, colframe=clawOrange,
+    boxrule=0.5pt, arc=2pt, left=6pt, right=6pt, top=4pt, bottom=4pt,
+    fonttitle=\bfseries\color{white},
+    coltitle=white, colbacktitle=clawOrange,
+    title=#1
+  },
+  warnbox/.style={
+    enhanced, colback=clawLight, colframe=clawRed,
+    boxrule=0.5pt, arc=2pt, left=6pt, right=6pt, top=4pt, bottom=4pt,
+    fonttitle=\bfseries\color{white},
+    coltitle=white, colbacktitle=clawRed,
+    title=#1
+  }
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+
+% =====================================================================
+\begin{document}
+
+% --------- Encabezado compacto (sin titlepage) ----------
+\begin{center}
+{\color{clawOrange}\rule{\linewidth}{1.5pt}}\\[4pt]
+{\Large\bfseries\color{clawDark} Reto: Construye tu Startup en 5 d\'ias}\\[2pt]
+{\normalsize\color{clawOrange} con Claude Code y agentes de IA}\\[4pt]
+{\small\color{clawGray} Bootcamp Claude Code -- Grupo de 3 \emph{founders} (carreras diversas)}\\[2pt]
+{\color{clawOrange}\rule{\linewidth}{0.6pt}}
+\end{center}
+
+\vspace{2pt}
+\begin{tabularx}{\linewidth}{@{}lX@{}}
+\textbf{Docente:} & Alexander Quispe \\
+\textbf{Modalidad:} & \textbf{Individual --- 1 \emph{solo founder} por proyecto} (no equipos) \\
+\textbf{Participantes:} & Keyla Castillo, Renzo Castillo, Jherson Inga (3 \emph{founders}, carreras diversas) \\
+\textbf{Inicio:} & Viernes 12 de junio de 2026 \\
+\textbf{Presentaci\'on:} & \textbf{Mi\'ercoles 17 de junio de 2026, 9:00\,pm} (sesi\'on \'unica) \\
+\textbf{Duraci\'on real:} & 5 d\'ias (Vie 12 a Mi\'e 17) \\
+\textbf{Calificaci\'on:} & 0--20 seg\'un r\'ubrica de este documento \\
+\end{tabularx}
+
+% =====================================================================
+\section{El reto en una p\'agina}
+
+La semana pasada aprendieron a usar \textbf{Claude Code}. Ahora les toca usarlo
+en serio: cada uno va a construir, en 5 d\'ias, una \textbf{startup funcional}
+--- problema real, soluci\'on con IA, prototipo desplegado y \emph{pitch} estilo
+Y Combinator. Como vienen de carreras distintas (no econom\'ia), el problema que
+ataquen \textbf{deber\'ia salir de su propio mundo}: salud, derecho, ingenier\'ia,
+dise\~no, ciencias, educaci\'on, deportes, gastronom\'ia, lo que conozcan bien.
+
+\begin{tcolorbox}[ycbox={Por qu\'e este reto importa}]
+La tesis de los \'ultimos 12 meses en Y Combinator es simple: \textbf{una sola
+persona con un agente de c\'odigo ya puede construir un producto completo en
+una semana.} Ustedes van a probarlo. No es un trabajo acad\'emico; es la
+v\'ersi\'on m\'as chica posible de una empresa real.
+\end{tcolorbox}
+
+% =====================================================================
+\section{Reglas}
+
+\begin{itemize}[leftmargin=1.1em,itemsep=1pt,topsep=0pt]
+  \item \textbf{Individual.} Cada uno construye su propia startup. No equipos.
+  \item \textbf{Tema libre} pero \emph{de su propia experiencia/carrera}.
+        El mejor problema es el que ustedes mismos sufren o conocen de cerca.
+  \item \textbf{Repo p\'ublico en GitHub.} README, c\'odigo del backend visible, sin secretos.
+  \item \textbf{Demo desplegado en URL p\'ublica} (Streamlit Cloud, Vercel, Railway,
+        Render, Hugging Face Spaces). Nada de ``corre en mi laptop''.
+  \item \textbf{Usen Claude Code como su CTO.} Lo aprendieron la semana pasada
+        --- ahora es la herramienta principal. Documenten en el README qu\'e partes
+        del repo fueron generadas/asistidas por agentes.
+  \item \textbf{En la sustentaci\'on les pedir\'e explicar y modificar c\'odigo en vivo.}
+        Pueden usar todos los agentes que quieran, pero tienen que entender lo que entregan.
+\end{itemize}
+
+% =====================================================================
+\section{Estructura del pitch -- formato Y Combinator (compacto)}
+
+Su \emph{deck} (PDF de 8--12 slides m\'aximo) debe responder estas preguntas en orden:
+
+\begin{enumerate}[leftmargin=1.4em,itemsep=1pt,topsep=2pt]
+  \item \textbf{One-liner.} ``Hacemos X para Y mediante Z.'' Una frase.
+  \item \textbf{Founder.} Qui\'en eres y por qu\'e \emph{t\'u} resuelves esto
+        (\emph{founder--market fit}).
+  \item \textbf{Problema.} Qui\'en lo sufre, qu\'e tan doloroso es, c\'omo lo
+        resuelven hoy. Con evidencia (3 entrevistas m\'inimo).
+  \item \textbf{Soluci\'on \& \emph{insight}.} Qu\'e construyes y qu\'e ves t\'u
+        que el resto no ve.
+  \item \textbf{Why now.} Por qu\'e este producto es posible hoy
+        (Claude Code, Whisper, PaddleOCR, modelos open-source baratos\ldots).
+  \item \textbf{Demo en vivo.} URL p\'ublica + flujos completos.
+  \item \textbf{Mercado \& modelo.} TAM/SAM/SOM con fuentes; precio concreto.
+  \item \textbf{Competencia.} 3--4 alternativas (incluyendo ``hacerlo en Excel'') + tu \emph{moat}.
+  \item \textbf{Tracci\'on.} Lo que tengas: entrevistas, \emph{waitlist}, usuarios beta.
+  \item \textbf{Roadmap a 3 / 6 / 12 meses.}
+  \item \textbf{The ask.} Cu\'anto pides y para qu\'e.
+\end{enumerate}
+
+% =====================================================================
+\section{Herramientas que les recomiendo aprovechar}
+
+\begin{tcolorbox}[ycbox={Stack sugerido}]
+\textbf{Construcci\'on del producto:} \textbf{Claude Code} (ya lo manejan),
+opcionalmente Codex o Cursor.\\
+\textbf{Backend r\'apido:} FastAPI o Flask (Python) / Next.js API routes.\\
+\textbf{Frontend r\'apido:} Streamlit (lo m\'as r\'apido para MVP de datos),
+Next.js o Lovable si quieren algo m\'as pulido.\\
+\textbf{Modelos de IA \'utiles seg\'un su problema:}
+\begin{itemize}[leftmargin=1em,itemsep=0pt,topsep=1pt]
+  \item \textbf{Claude / GPT-4o / Gemini} v\'ia API --- para razonamiento y generaci\'on.
+  \item \textbf{Whisper} --- transcripci\'on de audio/video (call centers, entrevistas, podcasts).
+  \item \textbf{PaddleOCR} --- extracci\'on de texto de im\'agenes y PDFs (facturas, contratos, recetas).
+  \item \textbf{Embeddings + Pinecone/Qdrant/Chroma} --- b\'usqueda sem\'antica, RAG.
+\end{itemize}
+\textbf{Deploy gratis:} Streamlit Community Cloud, Vercel, Railway, Render, Hugging Face Spaces.
+\end{tcolorbox}
+
+% =====================================================================
+\section{R\'ubrica de evaluaci\'on (0--20)}
+
+\renewcommand{\arraystretch}{1.15}
+\begin{tabularx}{\linewidth}{@{}>{\bfseries\color{clawDark}}l X >{\centering\arraybackslash}p{1.4cm}@{}}
+\toprule
+\textcolor{clawDark}{Criterio} & \textcolor{clawDark}{\bfseries Qu\'e evaluamos} & \textcolor{clawDark}{\bfseries Puntos} \\
+\midrule
+Problema \& validaci\'on  & Claridad del problema; al menos 3 entrevistas; segmento bien definido. & 3 \\
+Soluci\'on \& \emph{insight} & Calidad del \emph{insight} no obvio; diferenciaci\'on real. & 2 \\
+\textbf{Prototipo / demo} & \textbf{Demo vivo en URL p\'ublica}, flujos completos, UX cuidada. & \textbf{6} \\
+Repositorio en GitHub & Estructura limpia, README \'util, backend inspeccionable, sin secretos. & 3 \\
+Uso de Claude Code \& IA & Claude Code como herramienta principal + al menos 1 modelo de IA integrado. & 3 \\
+Pitch \& sustentaci\'on & Pitch de 10 min, Q\&A, demo en vivo, explicar c\'odigo cuando se pida. & 3 \\
+\midrule
+\textbf{Total} & & \textbf{20} \\
+\bottomrule
+\end{tabularx}
+
+% =====================================================================
+\section{Cronograma --- 5 d\'ias}
+
+\begin{tcolorbox}[warnbox={Sin pr\'orroga}]
+Empiezan hoy \textbf{viernes 12 de junio}. Presentan el \textbf{mi\'ercoles
+17 de junio a las 9:00\,pm}. No hay extensiones. Los \emph{commits}
+concentrados en el \'ultimo d\'ia se notan en el historial.
+\end{tcolorbox}
+
+\renewcommand{\arraystretch}{1.18}
+\begin{tabularx}{\linewidth}{@{}>{\bfseries\color{clawOrange}}l X@{}}
+\toprule
+Vie 12 -- S\'ab 13 & Elegir problema (de tu propia carrera/mundo). 3 entrevistas
+a posibles usuarios. Crear el repo en GitHub. One-liner + problema en 1 p\'agina. \\
+Dom 14 -- Lun 15 & Prototipo navegable. Arquitectura definida. \emph{Push} diario al repo. \\
+Mar 16 & \textbf{Demo desplegado en URL p\'ublica}. Probarlo con 2 usuarios reales. \\
+Mi\'e 17 (d\'ia) & Pulido: capturas, video corto, README final, deck de 8--12 slides. \\
+\textbf{Mi\'e 17 -- 9:00\,pm} & \textbf{Presentaciones en la sesi\'on de clase.} \\
+\bottomrule
+\end{tabularx}
+
+% =====================================================================
+\section{Agenda de presentaciones --- mi\'ercoles 17 de junio, 9:00\,pm}
+
+3 \emph{founders}, slots de \textbf{15 minutos} (10 min pitch + 5 min Q\&A).
+Orden asignado por \textbf{sorteo aleatorio} (no negociable; si alguien no puede
+en su slot, debe coordinar un intercambio \emph{1:1} con otro \emph{founder} y
+avisarme con al menos 24 horas de anticipaci\'on).
+
+\begin{tabularx}{\linewidth}{@{}>{\bfseries\color{clawOrange}}c >{\ttfamily\small}c X@{}}
+\toprule
+\textcolor{clawDark}{\#} & \textcolor{clawDark}{\bfseries\rmfamily Horario} & \textcolor{clawDark}{\bfseries Founder} \\
+\midrule
+--  & 21:00--21:05 & \emph{Apertura} \\
+1   & 21:05--21:20 & Keyla Castillo \\
+2   & 21:20--21:35 & Jherson Inga \\
+3   & 21:35--21:50 & Renzo Castillo \\
+--  & 21:50--22:00 & \emph{Cierre / retroalimentaci\'on general} \\
+\bottomrule
+\end{tabularx}
+
+% =====================================================================
+\section{Checklist final}
+
+\begin{itemize}[leftmargin=1.5em,label=$\square$,itemsep=0pt,topsep=1pt]
+  \item Repo p\'ublico en GitHub con README, LICENSE y \texttt{.env.example}.
+  \item URL del demo accesible sin instalaciones.
+  \item Pitch deck (PDF) de 8--12 slides en \texttt{docs/}.
+  \item Video demo de 1--2 minutos (link en README).
+  \item 3 entrevistas documentadas en \texttt{docs/research/}.
+  \item Al menos 1 modelo de IA integrado (Claude API, Whisper, PaddleOCR\ldots).
+  \item \emph{Commits} repartidos en los 5 d\'ias (no todo el \'ultimo d\'ia).
+  \item Sin secretos comiteados (\texttt{git log -p} buscando \texttt{api\_key}, \texttt{token}).
+\end{itemize}
+
+\vspace{6pt}
+\begin{center}
+{\color{clawOrange}\rule{0.55\linewidth}{0.8pt}}\\[4pt]
+{\small\itshape\color{clawGray} ``Make something people want.'' --- Y Combinator}
+\end{center}
+
+\end{document}

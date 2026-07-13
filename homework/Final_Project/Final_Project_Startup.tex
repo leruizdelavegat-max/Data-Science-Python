@@ -1,0 +1,564 @@
+% =====================================================================
+% Proyecto Final - Data Science con Python (2026-I)
+% Construye tu startup con agentes de IA (Claude Code, Codex, etc.)
+% Formato Y Combinator - Rubrica 0 a 20
+% Compilar:  latexmk -pdf Final_Project_Startup.tex
+%        o:  pdflatex Final_Project_Startup.tex  (2 pasadas)
+% =====================================================================
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage{lmodern}
+\usepackage{amssymb}
+\usepackage[margin=2.2cm,headheight=22pt,headsep=10pt]{geometry}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tikz}
+\usepackage[most]{tcolorbox}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+
+\usetikzlibrary{positioning,arrows.meta,shapes.geometric,calc,backgrounds}
+
+% ---------------------------------------------------------------------
+% Paleta (consistente con Lecture_15 - OpenClaw)
+% ---------------------------------------------------------------------
+\definecolor{clawDark}{RGB}{33,37,43}
+\definecolor{clawOrange}{RGB}{230,81,0}
+\definecolor{clawRed}{RGB}{198,40,40}
+\definecolor{clawTeal}{RGB}{0,121,107}
+\definecolor{clawBlue}{RGB}{21,101,192}
+\definecolor{clawGray}{RGB}{117,117,117}
+\definecolor{clawLight}{RGB}{245,246,248}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=clawOrange,
+  urlcolor=clawBlue,
+  citecolor=clawTeal,
+  pdftitle={Proyecto Final - Construye tu Startup con Agentes de IA},
+  pdfauthor={Alexander Quispe - Universidad del Pacifico}
+}
+
+% Titulos
+\titleformat{\section}{\Large\bfseries\color{clawDark}}{\thesection}{0.6em}{}
+  [\vspace{2pt}{\color{clawOrange}\rule{\linewidth}{1.2pt}}]
+\titleformat{\subsection}{\large\bfseries\color{clawOrange}}{\thesubsection}{0.6em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{clawTeal}}{\thesubsubsection}{0.5em}{}
+
+% Header / footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{clawGray}Data Science con Python -- 2026-I}
+\fancyhead[R]{\small\color{clawGray}Proyecto Final}
+\fancyfoot[C]{\small\color{clawGray}\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{clawOrange}\leaders\hrule height \headrulewidth\hfill}}
+
+% tcolorbox helpers
+\tcbset{
+  ycbox/.style={
+    enhanced, colback=clawLight, colframe=clawOrange,
+    boxrule=0.6pt, arc=2pt, left=8pt, right=8pt, top=6pt, bottom=6pt,
+    fonttitle=\bfseries\color{white},
+    coltitle=white, colbacktitle=clawOrange,
+    title=#1
+  },
+  tipbox/.style={
+    enhanced, colback=clawLight, colframe=clawTeal,
+    boxrule=0.6pt, arc=2pt, left=8pt, right=8pt, top=6pt, bottom=6pt,
+    fonttitle=\bfseries\color{white},
+    coltitle=white, colbacktitle=clawTeal,
+    title=#1
+  },
+  warnbox/.style={
+    enhanced, colback=clawLight, colframe=clawRed,
+    boxrule=0.6pt, arc=2pt, left=8pt, right=8pt, top=6pt, bottom=6pt,
+    fonttitle=\bfseries\color{white},
+    coltitle=white, colbacktitle=clawRed,
+    title=#1
+  }
+}
+
+% =====================================================================
+\begin{document}
+
+% --------- Portada ----------
+\begin{titlepage}
+\centering
+\vspace*{1.2cm}
+{\color{clawOrange}\rule{\linewidth}{2pt}}\\[6pt]
+{\Large\bfseries\color{clawDark} Data Science con Python -- 2026-I}\\[2pt]
+{\small\color{clawGray} Universidad del Pac\'ifico --- Departamento de Econom\'ia}\\[4pt]
+{\color{clawOrange}\rule{\linewidth}{0.6pt}}\\[28pt]
+
+{\Huge\bfseries\color{clawDark} Proyecto Final}\\[10pt]
+{\LARGE\bfseries\color{clawOrange} Construye tu Startup}\\[6pt]
+{\large\color{clawDark} con Claude Code, Codex y Agentes de IA}\\[34pt]
+
+\begin{tcolorbox}[enhanced, colback=clawLight, colframe=clawDark,
+  boxrule=0.6pt, arc=2pt, width=0.85\linewidth, halign=center]
+\itshape\color{clawDark}
+``El a\~no 2026 es el primero en la historia en que una sola persona, con un terminal\\
+y un agente de c\'odigo, puede lanzar una empresa de software completa.''\\[3pt]
+{\small\color{clawGray} -- Discusiones recientes de Y Combinator / fundadores solo (\emph{solo founder}) con IA.}
+\end{tcolorbox}
+
+\vfill
+
+\begin{tabularx}{0.85\linewidth}{@{}lX@{}}
+\textbf{Docente:}      & Alexander Quispe \\
+\textbf{Modalidad:}    & \textbf{Individual --- 1 solo \emph{founder} por proyecto} (no se permiten equipos) \\
+\textbf{Inicio:}       & Viernes 12 de junio de 2026 \\
+\textbf{Presentaciones:} & \textbf{Martes 23 y mi\'ercoles 24 de junio de 2026}, 7:30--9:20\,am \\
+\textbf{Duraci\'on real:} & \textbf{$\sim$11 d\'ias calendario}. Tienen el fin de semana. \\
+\textbf{Entregable:}   & Repositorio en GitHub + Pitch + Prototipo funcional desplegado \\
+\textbf{Calificaci\'on:} & Vigesimal (\textbf{0--20}), seg\'un r\'ubrica del documento \\
+\textbf{Curso web:}    & \url{https://d2cml-ai.github.io/Data-Science-Python/2026-I/} \\
+\end{tabularx}
+
+\vspace{0.6cm}
+{\color{clawOrange}\rule{\linewidth}{2pt}}
+\end{titlepage}
+
+% =====================================================================
+\section{Motivaci\'on}
+
+Durante el ciclo hemos cubierto pr\'acticamente toda la cadena de valor de un producto moderno
+de datos e inteligencia artificial: desde el \emph{web scraping}, geocodificaci\'on, GIS y
+visualizaci\'on, hasta el uso de LLMs, fine-tuning, OCR de documentos con Claude AI,
+\textbf{Whisper}, \textbf{PaddleOCR}, agentes con \texttt{crewAI} y la construcci\'on de un
+agente personal estilo OpenClaw conectado a aplicaciones de mensajer\'ia.
+
+En paralelo, durante los \'ultimos 12 meses, fundadores y socios de \emph{Y Combinator}
+(Garry Tan, Jared Friedman, Paul Graham, Sam Altman, entre otros) han repetido el mismo
+mensaje en entrevistas, charlas y publicaciones: \textbf{con herramientas como Claude Code,
+Codex y agentes de IA, una sola persona ya puede construir un producto completo en semanas}.
+Cohortes recientes de YC reportan que m\'as del 25\,\% del c\'odigo es generado por agentes
+y que cada vez m\'as startups arrancan siendo \emph{solo founder}.
+
+\begin{tcolorbox}[ycbox={Qu\'e les pedimos}]
+No queremos un \emph{paper} acad\'emico ni un Jupyter notebook bonito.\\[2pt]
+Queremos que entreguen una \textbf{empresa funcional en peque\~no}: un problema real,
+una soluci\'on con IA, una landing/demo que un usuario pueda usar, un repositorio
+profesional en GitHub y un \emph{pitch} estilo Y Combinator. El prototipo debe estar
+\textbf{vivo y desplegado}, no solo en su laptop.
+\end{tcolorbox}
+
+% =====================================================================
+\section{Reglas generales}
+
+\begin{itemize}[leftmargin=1.2em,itemsep=2pt,topsep=2pt]
+  \item \textbf{Modalidad individual obligatoria:} cada estudiante construye
+        su propia startup como \emph{solo founder}. \textbf{No se permiten equipos
+        de dos o m\'as personas.} La premisa del curso es justamente que hoy una
+        sola persona, con Claude Code y agentes de IA, puede sacar adelante un
+        producto completo. Este proyecto es la prueba.
+  \item \textbf{Tema:} libre. Debe resolver un problema real y verificable
+        (idealmente en Per\'u o Latinoam\'erica). Se recomienda tomar como punto
+        de partida sectores en los que el curso ya gener\'o conocimiento:
+        finanzas, salud, educaci\'on, gobierno abierto, geoespacial, comercio,
+        agroindustria, legal-tech, productividad personal.
+  \item \textbf{Stack obligatorio:} debe usar al menos \emph{dos} de las
+        herramientas trabajadas en clase (ver Secci\'on~\ref{sec:tooling}).
+  \item \textbf{Repositorio:} todo el c\'odigo (frontend, backend, scripts de datos,
+        notebooks de exploraci\'on) vive en un repo p\'ublico de GitHub. El backend
+        debe ser inspeccionable; no se acepta ``magia'' detr\'as de un Google Form.
+  \item \textbf{Demo desplegado:} la versi\'on final debe estar accesible sin que
+        el evaluador tenga que clonar y configurar nada. URL p\'ublica obligatoria.
+  \item \textbf{Honestidad con IA:} pueden (y deben) usar Claude Code, Codex,
+        ChatGPT, Cursor o cualquier agente. Lo que no se acepta es \emph{no entender}
+        el c\'odigo entregado: en la sustentaci\'on les pediremos explicar y modificar
+        partes del repo en vivo.
+\end{itemize}
+
+% =====================================================================
+\section{Estructura del entregable -- Formato Y Combinator}
+
+El entregable principal es un \textbf{dossier} (PDF o landing) con la siguiente
+estructura, inspirada en el formulario de aplicaci\'on de Y Combinator y en los
+\emph{pitch decks} t\'ipicos de las cohortes recientes.
+
+\subsection{1. \emph{One-liner} (1 frase)}
+Describe la empresa en una sola oraci\'on: \emph{``Hacemos X para Y mediante Z''}.
+Si necesitas dos oraciones, todav\'ia no lo tienes claro.
+
+\subsection{2. \emph{Founder} (t\'u)}
+Nombre, foto, una l\'inea biogr\'afica y por qu\'e \textbf{t\'u} eres la persona
+indicada para resolver este problema (\emph{founder--market fit}).
+Como eres \emph{solo founder}, explica c\'omo cubres los roles cl\'asicos
+(producto, ingenier\'ia, dise\~no, ventas) apoy\'andote en agentes de IA:
+\emph{``Claude Code es mi CTO para el backend; Codex me ayuda con el frontend;
+uso un agente de \texttt{crewAI} para automatizar outreach a clientes, etc.''}
+
+\subsection{3. Problema}
+\begin{itemize}[leftmargin=1.2em,itemsep=2pt,topsep=2pt]
+  \item \textbf{Qui\'en} lo sufre. S\'e espec\'ifico (no ``los peruanos'', sino
+        \emph{``oficinas notariales en Lima de 3--10 empleados''}).
+  \item \textbf{Qu\'e tan doloroso} es. Cu\'antas horas, cu\'antos soles, cu\'antos errores.
+  \item \textbf{C\'omo lo resuelven hoy} sin ti (Excel, WhatsApp, contratar a alguien\ldots).
+  \item \textbf{Evidencia:} entrevistas, encuestas, capturas, datos p\'ublicos.
+        Cualquier cosa que no sea opini\'on.
+\end{itemize}
+
+\subsection{4. Soluci\'on \& \emph{Insight}}
+Qu\'e construyen exactamente y \textbf{qu\'e ven ustedes que el resto no ve}.
+Idealmente una sola idea no obvia (el ``\emph{insight}'' al estilo YC).
+
+\subsection{5. \emph{Why now?}}
+Por qu\'e este producto es posible \emph{hoy} y no hace 3 a\~nos.
+Casi siempre la respuesta incluye un avance reciente: LLMs baratos,
+agentes que ejecutan tareas, OCR multilenguaje gratis (PaddleOCR),
+\emph{speech-to-text} casi perfecto (Whisper), Claude Code para construir
+el backend en horas\ldots\ \'esa es exactamente la ventana que queremos
+que aprovechen.
+
+\subsection{6. Mercado}
+\begin{itemize}[leftmargin=1.2em,itemsep=2pt,topsep=2pt]
+  \item \textbf{TAM} (total addressable market): tama\~no total del problema.
+  \item \textbf{SAM} (serviceable available market): a qui\'en pueden vender realmente.
+  \item \textbf{SOM} (serviceable obtainable market): a qui\'en alcanzar\'an
+        en los primeros 12 meses.
+  \item Fuentes: INEI, MEF, BCRP, Banco Mundial, gremios, papers, \emph{reports} de Statista.
+\end{itemize}
+
+\subsection{7. Competencia y \emph{moat}}
+Tabla comparativa con 3--5 alternativas (incluyendo ``\emph{do nothing}''
+y ``hacerlo en Excel''). \textbf{Moat:} qu\'e los hace dif\'iciles de copiar
+(datos propios, modelo fine-tuneado, integraciones, comunidad, marca).
+
+\subsection{8. Producto -- Demo y arquitectura}\label{sec:demo}
+Esta es la secci\'on m\'as importante. Debe contener:
+\begin{itemize}[leftmargin=1.2em,itemsep=2pt,topsep=2pt]
+  \item URL p\'ublica del demo + credenciales de prueba si aplica.
+  \item Capturas (3--6) del flujo principal de un usuario real.
+  \item Diagrama de arquitectura (frontend, backend, base de datos, modelos de IA,
+        servicios externos). Puede ser dibujado a mano y escaneado, o con
+        \texttt{draw.io} / \texttt{Excalidraw} / TikZ.
+  \item Link al repo de GitHub y explicaci\'on de la estructura de carpetas.
+  \item Modelos / APIs de IA usados y \emph{por qu\'e} (ej. ``usamos Whisper
+        \texttt{large-v3} porque procesa audio en quechua mejor que la API de OpenAI'').
+\end{itemize}
+
+\subsection{9. Modelo de negocio y pricing}
+\begin{itemize}[leftmargin=1.2em,itemsep=2pt,topsep=2pt]
+  \item C\'omo ganan dinero (SaaS mensual, \emph{transaction fee}, marketplace,
+        licencia, freemium, B2G\ldots).
+  \item Pricing concreto (no ``a definir''). Tres planes m\'aximo.
+  \item Costos variables por usuario (tokens, almacenamiento, API de terceros).
+        Esto se llama \emph{contribution margin}.
+\end{itemize}
+
+\subsection{10. Go-to-market (GTM)}
+C\'omo conseguir\'an los primeros 10, 100 y 1{,}000 usuarios.
+Sean concretos: nombres de comunidades, canales, gremios, contactos.
+
+\subsection{11. Tracci\'on / se\~nales tempranas}
+Aunque la startup acabe de nacer, deben mostrar algo:
+usuarios beta, \emph{waitlist}, cartas de intenci\'on, conversaciones con clientes,
+prototipos previos usados por amigos. Cualquier evidencia $>$ ninguna evidencia.
+
+\subsection{12. Roadmap}
+Plan a 3, 6 y 12 meses. Una l\'inea por hito, no m\'as.
+
+\subsection{13. Riesgos y mitigaci\'on}
+Los tres riesgos m\'as serios (regulatorio, t\'ecnico, de mercado, de ejecuci\'on como \emph{solo founder}) y c\'omo los enfrentan.
+
+\subsection{14. \emph{The ask}}
+Si tuvieran 30 segundos con un inversionista en YC: \textbf{cu\'anto piden,
+para qu\'e}, y qu\'e \emph{milestone} desbloquea ese dinero.
+
+% =====================================================================
+\section{Stack del curso que pueden (y deben) aprovechar}\label{sec:tooling}
+
+A lo largo del semestre construyeron todas las piezas que necesita una startup
+moderna de IA. Esta es la chuleta para que recuerden qu\'e tienen disponible
+\emph{out-of-the-box}:
+
+\begin{tcolorbox}[ycbox={Datos e ingesta}]
+\textbf{Lecturas 2--3:} \emph{Web scraping} con \texttt{requests}, \texttt{BeautifulSoup},
+\texttt{Selenium} y Twitter/X API.\\
+\textbf{Lectura 14:} OCR de documentos PDF con \textbf{PaddleOCR} + extracci\'on
+estructurada usando Claude AI (\'util para procesar facturas, contratos,
+boletas, expedientes legales, hojas m\'edicas).\\
+\textbf{Whisper:} transcripci\'on de audio/v\'ideo en m\'ultiples idiomas
+(\'util para call centers, podcasts, entrevistas, audios de WhatsApp).
+\end{tcolorbox}
+
+\begin{tcolorbox}[ycbox={Geoespacial y visualizaci\'on}]
+\textbf{Lecturas 3--7:} geocodificaci\'on, \texttt{GeoPandas}, \texttt{Folium},
+mapas coropl\'eticos, rasters satelitales (\emph{nighttime lights}), \texttt{Streamlit}.\\
+Ideal para startups de retail, log\'istica, agro, salud p\'ublica, inmobiliarias o
+inteligencia de mercado.
+\end{tcolorbox}
+
+\begin{tcolorbox}[ycbox={Inteligencia Artificial}]
+\textbf{Lectura 9:} fundamentos de LLMs.\\
+\textbf{Lecturas 10--11:} agentes con \texttt{crewAI}; clasificaci\'on con \textbf{ModernBERT}.\\
+\textbf{Lecturas 12--13:} fine-tuning de modelos open-source (Llama, Mistral, etc.) y APIs.\\
+\textbf{Lectura 14:} \emph{document AI} con Claude (extracci\'on de quejas y datos
+estructurados de PDFs).\\
+\textbf{Lectura 15:} \textbf{OpenClaw} -- agente personal autoalojado conectado a
+WhatsApp, Telegram, Slack, Discord, Signal, iMessage, Teams\ldots\ esto solo
+ya es base para un sinn\'umero de startups verticales.
+\end{tcolorbox}
+
+\begin{tcolorbox}[tipbox={Agentes de c\'odigo para construir el producto}]
+\textbf{Claude Code} (ya lo tienen instalado), \textbf{Codex}, \textbf{Cursor},
+\textbf{Aider}: \'uselos como \emph{co-founder t\'ecnico} virtual --- son lo m\'as
+parecido que tienes a un socio. La rapidez con la que iteren el prototipo cuenta
+como capacidad de ejecuci\'on. Documenten en el README
+qu\'e parte del repo fue generada/asistida por agentes.
+\end{tcolorbox}
+
+% =====================================================================
+\section{Estructura del repositorio en GitHub}
+
+El repositorio es la prueba de que el producto existe. Estructura sugerida:
+
+\begin{tcolorbox}[enhanced, colback=clawLight, colframe=clawDark,
+  boxrule=0.6pt, arc=2pt, fontupper=\ttfamily\small]
+mi-startup/\\
+\hspace*{1.2em}README.md          \# pitch + how to run + arquitectura + autores\\
+\hspace*{1.2em}LICENSE            \# MIT o Apache 2.0 recomendado\\
+\hspace*{1.2em}.env.example       \# variables de entorno (NUNCA suban .env real)\\
+\hspace*{1.2em}docs/              \# pitch deck PDF, capturas, diagramas, video\\
+\hspace*{1.2em}frontend/          \# Streamlit, Next.js, React, etc.\\
+\hspace*{1.2em}backend/           \# FastAPI / Flask / Node -- endpoints HTTP\\
+\hspace*{1.2em}\hspace*{1.2em}app/\\
+\hspace*{1.2em}\hspace*{1.2em}tests/\\
+\hspace*{1.2em}\hspace*{1.2em}requirements.txt\\
+\hspace*{1.2em}ai/                \# prompts, agentes crewAI, fine-tuning scripts\\
+\hspace*{1.2em}data/              \# muestras chicas; datasets grandes en releases\\
+\hspace*{1.2em}notebooks/         \# exploraci\'on y EDA\\
+\hspace*{1.2em}.github/workflows/ \# CI b\'asico (lint + tests)\\
+\end{tcolorbox}
+
+\textbf{Despliegue sugerido (gratis o casi):} Streamlit Community Cloud, Vercel,
+Railway, Render, Fly.io, Hugging Face Spaces, GitHub Pages (para landing est\'atica).
+El backend pesado puede vivir en Render/Railway; los modelos en Hugging Face Spaces
+o Replicate.
+
+\begin{tcolorbox}[warnbox={No hacer}]
+\begin{itemize}[leftmargin=1.2em,itemsep=1pt,topsep=1pt]
+  \item Subir API keys, credenciales o el archivo \texttt{.env} real.
+  \item Repos privados (el evaluador no podr\'a leerlos).
+  \item Un solo commit gigante el d\'ia antes de la entrega.
+  \item README de una sola l\'inea o copiado del template por defecto.
+  \item Demos que requieran que el evaluador clone, instale dependencias
+        y configure 10 variables. \textbf{Debe correr online.}
+\end{itemize}
+\end{tcolorbox}
+
+% =====================================================================
+\section{R\'ubrica de evaluaci\'on (escala vigesimal, 0--20)}
+
+La nota final del proyecto es la suma de los siete componentes. Cada criterio
+se eval\'ua con un puntaje continuo. La sustentaci\'on oral puede mover la
+nota individual hasta $\pm$2 puntos.
+
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{@{}>{\bfseries\color{clawDark}}l X >{\centering\arraybackslash}p{1.6cm}@{}}
+\toprule
+\textcolor{clawDark}{Criterio} & \textcolor{clawDark}{\bfseries Qu\'e evaluamos} & \textcolor{clawDark}{\bfseries Puntaje} \\
+\midrule
+Problema \& validaci\'on  &
+Claridad del problema; evidencia (entrevistas, datos, capturas);
+segmento de cliente bien definido. & 3 \\
+\addlinespace
+Soluci\'on \& \emph{insight} &
+Calidad del \emph{insight} (no obvio); coherencia con el problema;
+diferenciaci\'on real frente a alternativas. & 2 \\
+\addlinespace
+Mercado \& modelo de negocio &
+TAM/SAM/SOM con fuentes; pricing concreto; \emph{contribution margin};
+plan de GTM realista. & 3 \\
+\addlinespace
+\textbf{Prototipo / demo funcional} &
+\textbf{La parte m\'as pesada}. Demo \emph{vivo} con URL p\'ublica; flujos
+completos sin errores; UX cuidada; latencia razonable; manejo de casos l\'imite. & \textbf{5} \\
+\addlinespace
+Repositorio en GitHub &
+Estructura limpia; README \'util; backend inspeccionable; CI b\'asico;
+\emph{commits} distribuidos en el tiempo; sin secretos filtrados. & 3 \\
+\addlinespace
+Uso de herramientas de IA del curso &
+Al menos 2 herramientas del semestre (Whisper, PaddleOCR, ModernBERT,
+crewAI, fine-tuning, agentes estilo OpenClaw, Claude/OpenAI APIs); justificaci\'on
+de por qu\'e \emph{esa} herramienta. & 2 \\
+\addlinespace
+Pitch \& sustentaci\'on &
+Pitch de 7 minutos + 3 minutos de Q\&A; capacidad de responder preguntas; demo en vivo;
+explicar c\'odigo del repo cuando se pida. & 2 \\
+\midrule
+\textbf{Total} & & \textbf{20} \\
+\bottomrule
+\end{tabularx}
+
+\medskip
+\noindent\textbf{Conversi\'on a niveles cualitativos (referencial):}
+
+\renewcommand{\arraystretch}{1.15}
+\begin{tabularx}{\linewidth}{@{}lX@{}}
+\toprule
+\textbf{Rango} & \textbf{Descripci\'on} \\
+\midrule
+18--20 & Listo para postular a YC, Founders Inc, NXTP, UTEC Ventures, Wayra. \\
+15--17 & Producto s\'olido, claro \emph{product-market fit} potencial; faltan detalles. \\
+12--14 & Idea decente, prototipo funciona a medias o falta validaci\'on. \\
+\hphantom{1}9--11  & Hay c\'odigo y hay slides, pero no se sostienen entre s\'i. \\
+\hphantom{1}0--8   & No hay demo, no hay repo, o no se entiende qu\'e construyeron. \\
+\bottomrule
+\end{tabularx}
+
+% =====================================================================
+\section{Cronograma real --- 11 d\'ias, sin pr\'orroga}
+
+\begin{tcolorbox}[warnbox={Esto es presi\'on tipo YC --- no de universidad}]
+Empiezan \textbf{hoy, viernes 12 de junio}. Presentan el \textbf{martes 23 y
+mi\'ercoles 24 de junio}. \textbf{No hay extensiones.} Las cohortes de YC viven
+en sprints de 1--2 semanas y los founders construyen sus MVP en ese rango.
+Ustedes tienen el mismo tiempo y herramientas mejores. Si dejan todo para el
+\'ultimo fin de semana, lo van a notar el evaluador, los compa\~neros y el
+historial de \emph{commits}.
+\end{tcolorbox}
+
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\linewidth}{@{}>{\bfseries\color{clawOrange}}l X@{}}
+\toprule
+\textcolor{clawOrange}{Vie 12 -- Dom 14 jun} & Elegir problema. \textbf{5 entrevistas} reales
+a potenciales clientes (presenciales, llamada o WhatsApp). Redactar one-liner +
+problema en 1 p\'agina. Crear el repo de GitHub. \\
+\addlinespace
+Lun 15 -- Mi\'e 17 jun & Primer prototipo navegable (puede ser \emph{wizard-of-oz}).
+Arquitectura inicial. Esqueleto de pitch deck. \emph{Push} diario al repo. \\
+\addlinespace
+Jue 18 -- Dom 21 jun & \textbf{Prototipo desplegado en URL p\'ublica.} Pricing y
+mercado definidos. \textbf{3 usuarios reales} prueban el demo y dejan feedback. \\
+\addlinespace
+Lun 22 jun & D\'ia de pulido: capturas para el deck, video demo de 2--3 min,
+README final, fix de bugs. \\
+\addlinespace
+\textbf{Mar 23 -- Mi\'e 24 jun} & \textbf{Presentaciones en clase (7:30--9:20\,am).}
+10 \emph{founders} por d\'ia, slots de 10 minutos (7 min pitch + 3 min Q\&A).
+Ver Secci\'on~\ref{sec:agenda}. \\
+\bottomrule
+\end{tabularx}
+
+% =====================================================================
+\section{Agenda de presentaciones (sorteo aleatorio)}\label{sec:agenda}
+
+Los 20 \emph{founders} activos del curso fueron asignados al azar a slots de
+\textbf{10 minutos} (7 min pitch + 3 min preguntas) en los dos d\'ias de
+presentaci\'on. \textbf{El orden no es negociable}; si alguien no puede en su
+slot, debe coordinar con anticipaci\'on un intercambio \emph{1:1} con otro
+\emph{founder} y notificarlo al docente al menos 48 horas antes.
+
+\begin{tcolorbox}[tipbox={Formato del pitch (estricto)}]
+\textbf{7 minutos de pitch} (cron\'ometro al frente) + \textbf{3 minutos de Q\&A}.\\[2pt]
+Estructura sugerida del pitch: problema (1\,min) -- soluci\'on \& demo en vivo
+(3--4\,min) -- mercado \& modelo (1\,min) -- tracci\'on \& \emph{ask} (1\,min).\\[2pt]
+\textbf{El demo en vivo es obligatorio.} Tener un plan B: video de respaldo
+en caso de que falle internet o el deploy.
+\end{tcolorbox}
+
+\subsection*{Martes 23 de junio --- 7:30 a 9:20\,am}
+
+\renewcommand{\arraystretch}{1.18}
+\begin{tabularx}{\linewidth}{@{}>{\bfseries\color{clawOrange}}c >{\ttfamily\small}c X@{}}
+\toprule
+\textcolor{clawDark}{\#} & \textcolor{clawDark}{\bfseries\rmfamily Horario} & \textcolor{clawDark}{\bfseries Founder} \\
+\midrule
+--  & 07:30--07:35 & \emph{Apertura y orden del d\'ia} \\
+1   & 07:35--07:45 & VALDERRAMA MONDRAGON, Carlo Andre \\
+2   & 07:45--07:55 & CARRERO ROMERO, Tamara Gisela \\
+3   & 07:55--08:05 & ARTEAGA TRUJILLO, Camila Fernanda \\
+4   & 08:05--08:15 & VENTURA MEZA, Alejandro Leone \\
+5   & 08:15--08:25 & YECKLE MONTOYA, Aiko Sara \\
+6   & 08:25--08:35 & TURPO DE LA CRUZ, Diego Alberto \\
+7   & 08:35--08:45 & GALARZA CHUMBE, Claudia Mercedes Rosalinda \\
+8   & 08:45--08:55 & BUENDIA UGARRIZA, Matias Alonso \\
+9   & 08:55--09:05 & ARRIOLA MONTENEGRO, Manuel Alfredo \\
+10  & 09:05--09:15 & BARRAZA RATACHI, John Svante \\
+--  & 09:15--09:20 & \emph{Cierre / retroalimentaci\'on general} \\
+\bottomrule
+\end{tabularx}
+
+\bigskip
+\subsection*{Mi\'ercoles 24 de junio --- 7:30 a 9:20\,am}
+
+\begin{tabularx}{\linewidth}{@{}>{\bfseries\color{clawOrange}}c >{\ttfamily\small}c X@{}}
+\toprule
+\textcolor{clawDark}{\#} & \textcolor{clawDark}{\bfseries\rmfamily Horario} & \textcolor{clawDark}{\bfseries Founder} \\
+\midrule
+--  & 07:30--07:35 & \emph{Apertura y orden del d\'ia} \\
+1   & 07:35--07:45 & SEGURA SURCO, Eric Sebastian \\
+2   & 07:45--07:55 & NAVA MONTENEGRO, Pietro Marcelo \\
+3   & 07:55--08:05 & VILLAR NAVARRO, Nicolas Enrique \\
+4   & 08:05--08:15 & SOTACURO ESCOBAR, Sandro \\
+5   & 08:15--08:25 & FIESTAS PAZO, Dajanira Michelly Briggitte \\
+6   & 08:25--08:35 & CCASANI HUACHUA, Axel Aaron \\
+7   & 08:35--08:45 & OTINIANO ALVARADO, Mayra Janice \\
+8   & 08:45--08:55 & SARMIENTO VASQUEZ, Evelyn Valeria \\
+9   & 08:55--09:05 & BENAVIDES BAUTISTA, Mauricio Jorge \\
+10  & 09:05--09:15 & VALER OSIS, Jorge Luis \\
+--  & 09:15--09:20 & \emph{Cierre / retroalimentaci\'on general} \\
+\bottomrule
+\end{tabularx}
+
+\medskip
+\noindent\small\textcolor{clawGray}{Total: 20 \emph{founders}. Sorteo aleatorio
+realizado el 12 de junio de 2026. Estudiantes con estado \emph{Withdrawn} en el
+sistema fueron excluidos del sorteo.}
+
+% =====================================================================
+\section{Checklist final}
+
+Antes de entregar, marquen mentalmente cada \'item:
+
+\begin{itemize}[leftmargin=1.5em,label=$\square$,itemsep=1pt,topsep=2pt]
+  \item Repo p\'ublico en GitHub con README, LICENSE y \texttt{.env.example}.
+  \item URL del demo accesible sin instalaciones.
+  \item Pitch deck (PDF) en \texttt{docs/}.
+  \item Video demo de 2--3 minutos (link en README, puede estar en YouTube/Loom).
+  \item Diagrama de arquitectura.
+  \item Secci\'on en el README listando qu\'e herramientas del curso usaron
+        y d\'onde en el c\'odigo.
+  \item Al menos 5 entrevistas o evidencias de validaci\'on documentadas
+        en \texttt{docs/research/}.
+  \item \emph{Commits} repartidos a lo largo de los 11 d\'ias (no todo el \'ultimo d\'ia).
+  \item No hay secretos comiteados en el repo. Revisa con
+        \texttt{git log -p} buscando \texttt{api\_key}, \texttt{secret}, \texttt{token}, etc.
+\end{itemize}
+
+% =====================================================================
+\section{Inspiraci\'on -- d\'onde mirar}
+
+\begin{itemize}[leftmargin=1.2em,itemsep=2pt,topsep=2pt]
+  \item \textbf{Y Combinator -- Request for Startups:} \url{https://www.ycombinator.com/rfs}
+  \item \textbf{YC Library:} \url{https://www.ycombinator.com/library} (lean ``How to
+        Pitch Your Startup'' y ``How to Talk to Users'').
+  \item \textbf{YC application form} (pueden usarlo de plantilla):
+        \url{https://www.ycombinator.com/apply}
+  \item \textbf{Charlas recientes de Garry Tan / Jared Friedman} sobre \emph{solo founders}
+        y agentes de IA (YouTube, canal de Y Combinator).
+  \item \textbf{Repos de cohortes recientes:} busquen en GitHub ``YC W25'', ``YC S25''
+        para ver c\'omo estructuran sus repos las startups reales.
+\end{itemize}
+
+% =====================================================================
+\vspace{1em}
+\begin{center}
+{\color{clawOrange}\rule{0.6\linewidth}{1pt}}\\[6pt]
+{\itshape\color{clawGray}
+``Make something people want.''\\
+-- Y Combinator}
+\end{center}
+
+\end{document}
